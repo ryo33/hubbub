@@ -9,6 +9,10 @@ body{
 header{
 a href="http://hubbub.giikey.com"{Hubbub;}
 }
+script src=script/setting.js{}
+script src=script/function.js{}
+script src=script/api.js{}
+script src=script/start.js{}
 div{
 }
 }

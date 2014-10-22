@@ -1,0 +1,5 @@
+
+<Files ~ "index\.html">
+allow from all
+</Files>
+ErrorDocument 503 action/maintenance.php
