@@ -1,5 +1,3 @@
-fucntion request(url, request){
-    if(typeof request === 'undefined')
-        request = "";
-    //TODO
+fuction id(id){
+    return document.getElementById(id);
 }

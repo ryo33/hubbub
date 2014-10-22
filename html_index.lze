@@ -8,6 +8,7 @@ title{Hubbub;}
 body{
 header{
 a href="http://hubbub.giikey.com"{Hubbub;}
+input type="button" id="authbutton"{}
 }
 script src=script/setting.js{}
 script src=script/function.js{}

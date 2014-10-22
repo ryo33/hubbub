@@ -12,19 +12,15 @@ $_REQUEST = delete_null_byte($_REQUEST);
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     Header("http://hubbub.giikey.com", true, 303);
 }
-if(!isset($_POST['code']) || !isset($_POST['state'])){
+if(!isset($_POST['code'])){
     Header("http://hubbub.giikey.com", true, 303);
 }
-if(strlen($_POST['code']) == 0 || strlen($_POST['state']) == 0){
+if(strlen($_POST['code']) == 0){
     Header("http://hubbub.giikey.com", true, 303);
+    exit();
 }
+
 ?>
 <script>
-local_state = localStorage.getItem("state");
-localStorage.removeItem("state");
-if(local_state !== hash(<?php echo $_POST['state'];?>)){
-    location.href = "http://hubbub.giikey.com";
-}
-localStorage.clear();
-localStorage.setItem("code", <?php echo $_POST['code'];?>);
+
 </script>
