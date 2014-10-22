@@ -5,23 +5,25 @@ foreach($includes as $include){
 }
 include 'start.php';
 
-//
+include 'template/head.php';
+
 if($maintenance){
     include 'action/maintenance.php';
-    exit();
+}else{
+    $pathinfo= getPathInfo();
+    switch($pathinfo){
+    case '/timeline':
+        include 'action/timeline.php';
+        break;
+    case '/login':
+        include 'action/login.php';
+        break;
+    default:
+        redirect('http://beans.giikey.com');
+        exit();
+    }
 }
 
-//
-$pathinfo= getPathInfo();
-switch($pathinfo){
-case '/timeline':
-    include 'action/timeline.php';
-    break;
-case '/login':
-    include 'action/login.php';
-    break;
-default:
-    redirect('http://beans.giikey.com');
-    exit();
-}
+include 'template/foot.php';
+
 include 'last.php';
