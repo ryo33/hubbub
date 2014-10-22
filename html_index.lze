@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+${html
+html{
+head{
+{meta charset="UTF-8";}
+title{Hubbub;}
+}
+body{
+header{
+a href="hubbub.giikey.com"{Hubbub;}
+}
+div{
+}
+}
+}
