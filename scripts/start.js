@@ -21,7 +21,7 @@ authbutton.on("click",
                 is_auth = false;
                 localStorage.clear();
             }else{
-                location.href = "http://hubbub.giikey.com/login.php";
+                location.href = "http://github.com/login/oauth/authorize?client_id=0972d445ad4c4d147ccd";
             }
             return true;
         });
