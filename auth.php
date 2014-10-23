@@ -17,7 +17,7 @@ $options = array(
 $con = stream_context_create($options);
 $res = file_get_contents($url, false, $con);
 
-$token = preg_match("/access_token=(\w*)/", $res);
+$token = preg_match("/access_token=(\w)&/", $res);
 echo $token;
 ?>
 <script>
