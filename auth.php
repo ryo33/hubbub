@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html>
-<body>
 <?php
 include "setting.php";
 
@@ -17,12 +15,9 @@ $options = array(
 $con = stream_context_create($options);
 $res = file_get_contents($url, false, $con);
 
-$token = preg_match("/access_token=(\w)&/", $res);
-echo $token;
+preg_match("/access_token=(\w*)&/", $res, $token);
 ?>
 <script>
-localStorage.setItem("token", <?php echo $token;?>);
-location.href = "http://hubbub.com";
+localStorage.setItem("token", "<?php echo $token[1];?>");
+location.replace("http://hubbub.giikey.com");
 </script>
-</body>
-</html>
