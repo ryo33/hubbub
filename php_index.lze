@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 ${html
-html{
-head{
-{meta charset="UTF-8";}
-title{Hubbub;}
-}
-body{
-header{
-a href="http://hubbub.giikey.com"{Hubbub;}
-{input type="button" id="authbutton" value="";}
-}
-script src="scripts/jquery-2.1.1.js"{}
-script src="scripts/setting.js"{}
-script src="scripts/function.js"{}
-script src="scripts/api.js"{}
-script src="scripts/start.js"{}
-div{
-}
-}
+html lang="en"{
+    head{
+    {meta charset="UTF-8";}
+    {meta name="viewport" content="width=device-width, initial-scale=1";}
+    {link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";}
+    {link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css";}
+    {link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js";}
+    title{Hubbub;}
+    }
+    body{
+        div class="container"{
+            nav class="navbar navbar-default" role="navigation"{
+                a href="http://hubbub.giikey.com" class="navbar-brand"{Hubbub;}
+                button id="authbutton" type="button" class="btn btn-default navbar-btn"{Login;}
+            }
+            div class="panel panel-default"{
+                div class=
+                div class="panel-body"{
+
+                }
+            }
+            script src="scripts/jquery-2.1.1.js"{}
+            script src="scripts/setting.js"{}
+            script src="scripts/function.js"{}
+            script src="scripts/api.js"{}
+            script src="scripts/start.js"{}
+        }
+    }
 }
