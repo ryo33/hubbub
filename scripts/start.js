@@ -1,7 +1,6 @@
 var is_auth = false;
-var auth = localStorage.getItem('auth');//remove when logout
-if(code !== null){
-    var token = auth(code);
+var token = localStorage.getItem('token');//remove when logout
+if(token !== null){
     if(token === false){
         localStorage.clear();
     }else{
@@ -9,19 +8,20 @@ if(code !== null){
     }
 }
 
+authbutton = $("input");
 if(is_auth){
-    document.authbutton.value = "logout";
+    authbutton.attr("value", "logout");
 }else{
-    document.authbutton.value = "login";
+    authbutton.attr("value", "login");
 }
 
-document.getElementById("authbutton").addEventListener("click",
+authbutton.on("click",
         function(){
             if(is_auth){
                 is_auth = false;
                 localStorage.clear();
             }else{
-                location.href = "http://github.com/login/oauth/authorize?client_id=" + client_id + "&scope=" + scope + "&state=" + state;
+                location.href = "http://hubbub.giikey.com/login.php";
             }
             return true;
-        }, false);
+        });

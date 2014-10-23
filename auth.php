@@ -1,26 +1,23 @@
-<?php
-foreach($_GET  as $key => $value){
-    $_GET[$key] = mb_convert_encoding($_GET[$key],'utf8','auto');
-}
-foreach($_POST as $key => $value){
-    $_POST[$key] = mb_convert_encoding($_POST[$key],'utf8','auto');
-}
-$_GET = delete_null_byte($_GET);
-$_POST = delete_null_byte($_POST);
-$_COOKIE = delete_null_byte($_COOKIE);
-$_REQUEST = delete_null_byte($_REQUEST);
-if($_SERVER['REQUEST_METHOD'] !== "POST"){
-    Header("http://hubbub.giikey.com", true, 303);
-}
-if(!isset($_POST['code'])){
-    Header("http://hubbub.giikey.com", true, 303);
-}
-if(strlen($_POST['code']) == 0){
-    Header("http://hubbub.giikey.com", true, 303);
-    exit();
-}
 
+<?php
+include "setting.php";
+
+$url = 'http://github.com/login/oauth/access_token';
+$request = array('client_id' => $client_id, 'client_secret' => $client_secret, 'code' => $_POST['code']);
+
+$options = array(
+    'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($request),
+    ),
+);
+$con = stream_context_create($options);
+$res = file_get_contents($url, false, $con);
+
+var_dump($res);
 ?>
 <script>
-
+localStorage.setItem("token", <?php echo $token;?>);
+$(location).attr("href", "http://hubbub.com");
 </script>
