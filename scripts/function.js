@@ -44,3 +44,11 @@ function add_to_first(args){
 function error(){
     localStorage.clear();
 }
+
+function comment(commit_id){
+
+}
+
+function show_commit(commit_id){
+
+}
