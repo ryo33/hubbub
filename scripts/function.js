@@ -19,16 +19,9 @@ function show_welcome(){
     $("#authbutton2").on("click", auth_button);
 }
 
-function show_no_events(){
-    $("div#panels").append("<div id=\"no_events\" class=\"jumbotron\">" +
-        "<h1>There is not displayable events.<br />Watch active repositories!</h1>" +
-        "<p><a href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></p></div>"
-        );
-}
-
 function show_loading(){
     $("div#panels").append("<div id=\"loading\" class=\"jumbotron\">" +
-        "<h1>Loading</h1><h2>Perhaps you don't follow active repositories.</h2><h2>Why don't you follow the repository of this website.</h2><a href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></div>"
+        "<h1>Loading</h1><h2>Perhaps you don't follow active repositories.</h2><h2>Would you like to follow the repository of this website.</h2><a href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></div>"
         );
 }
 

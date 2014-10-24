@@ -14,19 +14,28 @@ function get_timeline(){
             if(json.data){
                 $.each(json.data, function(i, event){
 //-----------------------------------------------------------------------------------------------event
-                    var icon = event.actor.avatar_url;
                     var id = event.actor.login;
                     if(!(id in users)){
-                        $.ajax({
-                            type: "GET",
-                            url: "https://api.github.com/users/" + id + "?access_token=" + token,
-                            dataType: "jsonp",
-                            success: function(json){
-                                users[id] = json.data.name;
-                            },
-                            async: false
-                        });
+                        console.log("a");
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", "https://api.github.com/users/"+ id, false);
+                        xhr.onload = function (e) {
+                            if (xhr.readyState === 4) {
+                                if (xhr.status === 200) {
+                                    users[id] = $.parseJSON(xhr.responseText).name;
+                                }
+                            }
+                        };
+                        xhr.onerror = function (e) {
+                            console.error(xhr.statusText);
+                        };
+                        xhr.send(null);
                     }
+                });
+                $.each(json.data, function(i, event){
+//-----------------------------------------------------------------------------------------------event
+                    var icon = event.actor.avatar_url;
+                    var id = event.actor.login;
                     commits = event.payload.commits;
                     if(commits){
 //-----------------------------------------------------------------------------------------------commits
