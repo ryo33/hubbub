@@ -31,7 +31,7 @@ function create_panel(args){
     var name = args.name;
     var lines = args.lines;
     var filename = args.filename;
-    var time = args.time;
+    var time = new Date(args.time).toLocaleString();
     var comment = args.comment;
     var detail = args.detail;
     var i = args.i;
@@ -102,20 +102,28 @@ function comment(args){
     var textarea = $("#" + i + "textarea");
     var pre = $("#" + i + " pre");
     pre.after("<textarea id=\"" + i + "textarea\" class=\"form-control\" rows=\"5\" style=\"margin: 0 0 10px;\"></textarea>");
-
+    $("#" + i + "textarea").after("<div id=\"" + i + "checkbox\"><label>" +
+      "<input type=\"checkbox\"> from Hubbub</label></div>");
+    $("#" + i + "checkbox input").attr("checked", true);
     var comment_button = $("#" + i + " button.comment");
     comment_button.html(get_icon_submit() + "Submit");
     comment_button.removeAttr("onClick");
     comment_button.on(
         "click",
         function(event){
-            if($(event.target).parent().children("textarea").val()){
+            if($(event.target).parent().children("textarea").val()){//TODO
+              var checkbox = $("#" + i + "checkbox input");
+              var after = "\n\nfrom <a href=\"" + domain + "\">Hubbub</a>";
+              if(checkbox.prop('checked') != true){
+                  after = "";
+              }
             $.ajax({
                 type: "POST",
                 url: url + "?access_token=" + token,
-                data: JSON.stringify({"body": $(event.target).parent().children("textarea").val() + "\n\nfrom <a href=\"" + domain + "\">Hubbub</a>", "path": filename}),
+                data: JSON.stringify({"body": $(event.target).parent().children("textarea").val() + after, "path": filename}),
                 success: function(res){
                     $(event.target).parent().children("textarea").remove();
+                    $(event.target).parent().children("div").remove();
                     $(event.target).html(get_icon_comment() + "Comment");
                     $(event.target).attr('disabled', true);
                 },

@@ -16,7 +16,6 @@ function get_timeline(){
 //-----------------------------------------------------------------------------------------------event
                     var id = event.actor.login;
                     if(!(id in users)){
-                        console.log("a");
                         var xhr = new XMLHttpRequest();
                         xhr.open("GET", "https://api.github.com/users/"+ id, false);
                         xhr.onload = function (e) {
