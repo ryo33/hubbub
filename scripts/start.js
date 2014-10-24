@@ -1,6 +1,7 @@
 var is_auth = false;
 var token = localStorage.getItem('token');//remove when logout
 var user = null;
+var modified = "";
 if(!token){
     localStorage.clear();
 }else{
@@ -16,6 +17,7 @@ if(!token){
             success: function(a){
                 user = a.data.login;
                 localStorage.setItem('user', user);
+                reload();
             },
             dataType: "jsonp"
         });
@@ -35,11 +37,10 @@ authbutton.on("click",
                 is_auth = false;
                 localStorage.clear();
                 authbutton.text("login");
-                reload()
+                reload();
             }else{
                 location.href = "http://github.com/login/oauth/authorize?client_id=0972d445ad4c4d147ccd&scope=repo, user";
             }
             return true;
         });
-reload()
-
+reload();

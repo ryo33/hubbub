@@ -11,13 +11,13 @@
 			Hubbub
 		</title>
 	</head>
-	<body>
+	<body style="background: #CCF">
 		<div class= "container">
-			<nav class= "navbar navbar-default navbar-fixed-top" role= "navigation">
+			<nav class= "navbar navbar-inverse" role= "navigation">
 				<a href= "http://hubbub.giikey.com" class= "navbar-brand">
 					Hubbub
 				</a>
-				<button id= "authbutton" type= "button" class= "btn btn-default navbar-btn">
+				<button id= "authbutton" type= "button" class= "btn btn-inverse navbar-btn">
 					Login
 				</button>
 			</nav>

@@ -16,8 +16,9 @@ $con = stream_context_create($options);
 $res = file_get_contents($url, false, $con);
 
 preg_match("/access_token=(\w*)&/", $res, $token);
+$token = $token[1]
 ?>
 <script>
-localStorage.setItem("token", "<?php echo $token[1];?>");
+localStorage.setItem("token", "<?php echo $token;?>");
 location.replace("http://hubbub.giikey.com");
 </script>
