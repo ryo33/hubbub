@@ -1,7 +1,7 @@
 function get_timeline(){
     var panel_count = 0;
     var users = {};
-    show_no_events();
+    show_loading();
     $.ajax({
         type: "GET",
         url: "https://api.github.com/users/" + user + "/received_events?access_token=" + token,
@@ -48,26 +48,26 @@ function get_timeline(){
 //-----------------------------------------------------------------------------------------------file
                                             var detail = file.blob_url;
                                             var filename = file.filename;
-                                            $("#no_events").remove();
-                                            add_to_last({
-                                            i: panel_count,
-                                            icon: icon,
-                                            id: id,
-                                            name: users[id],
-                                            detail: detail,
-                                            comment: comment,
-                                            filename: filename,
-                                            time: time,
-                                            lines: file.patch.replace(/@@ [^@]+ @@/g, "").split("\n")
-                                        });
-                                        panel_count ++;
+                                            $("#loading").remove();
+                                            add_panel({
+                                                i: panel_count,
+                                                icon: icon,
+                                                id: id,
+                                                name: users[id],
+                                                detail: detail,
+                                                comment: comment,
+                                                filename: filename,
+                                                time: time,
+                                                lines: file.patch.replace(/@@ [^@]+ @@/g, "").split("\n")
+                                            });
+                                            panel_count ++;
                                             if(panel_count == panels_max){
                                                 return false;//same as "break;"
                                             }
                                         });
                                     }
                                 },
-                                dataType: "jsonp"
+                                dataType: "jsonp",
                             });
                         });
                     }

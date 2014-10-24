@@ -2,6 +2,7 @@ var is_auth = false;
 var token = localStorage.getItem('token');//remove when logout
 var user = null;
 var modified = "";
+var times = [];
 if(!token){
     localStorage.clear();
 }else{

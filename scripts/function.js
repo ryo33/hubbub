@@ -16,13 +16,19 @@ function show_welcome(){
         "<p><a id=\"authbutton2\" class=\"btn btn-primary btn-lg\">Login</a></p>" +
         "<p><a href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></p></div>"
         );
-    authbutton2.on("click", auth_button);
+    $("#authbutton2").on("click", auth_button);
 }
 
 function show_no_events(){
     $("div#panels").append("<div id=\"no_events\" class=\"jumbotron\">" +
         "<h1>There is not displayable events.<br />Watch active repositories!</h1>" +
         "<p><a href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></p></div>"
+        );
+}
+
+function show_loading(){
+    $("div#panels").append("<div id=\"loading\" class=\"jumbotron\">" +
+        "<h1>Loading</h1><h2>Perhaps you don't follow active repositories.</h2><h2>Why don't you follow the repository of this website.</h2><a href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></div>"
         );
 }
 
@@ -65,12 +71,29 @@ function create_panel(args){
         "</div>";
 }
 
+function add_panel(args){
+	var time = new Date(args.time).valueOf();
+	var is_added = false;
+	for(var i = 0;i < times.length;i++){
+		if(times[i] <= time){
+			is_added = true;
+			$("div#panels").children("div").eq(i).before(create_panel(args));
+			times.splice(i, 0, time);
+                        break;
+		}
+	}
+	if(!is_added){
+		$("div#panels").append(create_panel(args));
+		times.push(time);
+	}
+}
+
 function add_to_last(args){
-    $("div#panels").append(create_panel(args));
+    $("#panels").append(create_panel(args));
 }
 
 function add_to_first(args){
-    $("div#panels").prepend(create_panel(args));
+    $("#panels").prepend(create_panel(args));
 }
 
 function error(){
@@ -100,7 +123,8 @@ function comment(args){
                 data: JSON.stringify({"body": $(event.target).parent().children("textarea").val() + "\n\nfrom <a href=\"" + domain + "\">Hubbub</a>", "path": filename}),
                 success: function(res){
                     $(event.target).parent().children("textarea").remove();
-                    $(event.target).remove();
+                    $(event.target).html(get_icon_comment() + "Comment");
+                    $(event.target).attr('disabled', true);
                 },
                 dataType: "json",
                 contentType: "application/json"
