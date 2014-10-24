@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<div class= "container">
-			<nav class= "navbar navbar-default" role= "navigation">
+			<nav class= "navbar navbar-default navbar-fixed-top" role= "navigation">
 				<a href= "http://hubbub.giikey.com" class= "navbar-brand">
 					Hubbub
 				</a>
@@ -21,9 +21,7 @@
 					Login
 				</button>
 			</nav>
-			<div class= "panel panel-default">
-				<div class= div class= "panel-body">
-				</div>
+			<div id= "panels">
 			</div>
 			<script src= "scripts/jquery-2.1.1.js">
 			</script>
