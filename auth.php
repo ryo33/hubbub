@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html>
+<head>
 <?php
 include "setting.php";
 
@@ -20,5 +22,7 @@ $token = $token[1]
 ?>
 <script>
 localStorage.setItem("token", "<?php echo $token;?>");
-location.replace("http://hubbub.giikey.com");
+location.href = "http://hubbub.giikey.com";
 </script>
+</head>
+</html>

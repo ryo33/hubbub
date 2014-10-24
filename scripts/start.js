@@ -39,7 +39,7 @@ authbutton.on("click",
                 authbutton.text("login");
                 reload();
             }else{
-                location.href = "http://github.com/login/oauth/authorize?client_id=0972d445ad4c4d147ccd&scope=repo, user";
+                location.href = "http://github.com/login/oauth/authorize?client_id=0972d445ad4c4d147ccd&scope=repo, public_repo, user";
             }
             return true;
         });
