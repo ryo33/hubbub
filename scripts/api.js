@@ -1,25 +1,18 @@
-function get(url){
+function get_timeline(){
     $.ajax({
         type: "GET",
-        url: url,
-        error: function(xhr){
-            localStorage.clear();
-        },
-        success: function(json){
-            link = json._links.current_user.href.text();
-            $.ajax({
-                type: "GET",
-                url: link,
-                error: function(xhr){
-                    localStorage.clear();
-                },
-                success: function(xml){
-                    console.log(xml);
-                },
-                dataType: "xml"
-        },
-        dataType: "jsonp"
+    url: "https://api.github.com/users/" + user + "/received_events?access_token=" + token,
+    error: function(xhr){
+        localStorage.clear();
+    },
+    success: function(json){
+        console.log(json);
+    },
+    dataType: "jsonp"
     });
-function get_feeds(){
-    
 }
+
+function get_feeds(){
+
+}
+
