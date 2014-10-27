@@ -34,6 +34,7 @@ function create_panel(args){
     var time = new Date(args.time).toLocaleString();
     var comment = args.comment;
     var detail = args.detail;
+    var file = args.file;
     var i = args.i;
     var comment_arg = "{i: " + i + ", url: '" + comment + "', filename: '" + filename + "'}";
     var detail_arg = "{url: '" + detail + "'}";
@@ -42,16 +43,18 @@ function create_panel(args){
         "<a class=\"lead\" href=\"https://github.com/" + id + "\"><img src=\"" + icon + "\" height=30px width=30px />" + id + "</a><span class=\"text-muted\"> " + name + "</span>" +
         "</div>"+
         "<div id=\"" + i + "\" class=\"panel-body\">" +
-        "<a href=" + detail + " target=\"_blank\">" + filename + "</a><span class=\"text-muted\"> " + time + "</span>" +
+        "<a href=\"" + file + "\" target=\"_blank\">" + filename + "</a><span class=\"text-muted\"> " + time + "</span>" +
         "<pre class=\"pre-scrollable\" style=\"background-color:#eee\">" +
         lines.map(function(x){
+            if(x.charAt(0) == "@"){
+               return "";//same as continue
+            }
             var before = "<span class=\"text-muted\">";
             var after = "</span>";
             if(x.charAt(0) == "+"){
                before = "<span class=\"bg-success\" style=><strong>";
                after = "</strong></span>";
-            }
-            if(x.charAt(0) == "-"){
+            }else if(x.charAt(0) == "-"){
                before = "<span class=\"bg-danger\">";
                after = "</span>";
             }                
@@ -79,6 +82,7 @@ function add_panel(args){
 		$("div#panels").append(create_panel(args));
 		times.push(time);
 	}
+	window.scrollTo(0,0);
 }
 
 function add_to_last(args){
@@ -113,7 +117,7 @@ function comment(args){
         function(event){
             if($(event.target).parent().children("textarea").val()){//TODO
               var checkbox = $("#" + i + "checkbox input");
-              var after = "\n\nfrom <a href=\"" + domain + "\">Hubbub</a>";
+              var after = "\n\nfrom <a href=\"" + domain + "\" target=\"_blank\">Hubbub</a>";
               if(checkbox.prop('checked') != true){
                   after = "";
               }
@@ -163,4 +167,8 @@ function get_icon_submit(){
 
 function get_icon_detail(){
     return "<span class=\"glyphicon glyphicon-new-window\"></span>";
+}
+
+function h(text){
+    return $('<div>').text(text).html()
 }

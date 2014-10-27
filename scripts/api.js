@@ -50,27 +50,31 @@ function get_timeline(){
 //-----------------------------------------------------------------------------------------------commit
                                     var time = json.data.commit.committer.date;
                                     var comment = json.data.comments_url;
+                                    var detail = json.data.html_url;
 //-----------------------------------------------------------------------------------------------files
                                     if(json.data.files){
                                         $.each(json.data.files, function(i, file){
+                                            if(file.patch){
 //-----------------------------------------------------------------------------------------------file
-                                            var detail = file.blob_url;
-                                            var filename = file.filename;
-                                            $("#loading").remove();
-                                            add_panel({
-                                                i: panel_count,
-                                                icon: icon,
-                                                id: id,
-                                                name: users[id],
-                                                detail: detail,
-                                                comment: comment,
-                                                filename: filename,
-                                                time: time,
-                                                lines: file.patch.replace(/@@ [^@]+ @@/g, "").split("\n")
-                                            });
-                                            panel_count ++;
-                                            if(panel_count == panels_max){
-                                                return false;//same as "break;"
+                                                var blob = file.blob_url;
+                                                var filename = file.filename;
+                                                $("#loading").remove();
+                                                add_panel({
+                                                    file: h(blob),
+                                                    i: h(panel_count),
+                                                    icon: h(icon),
+                                                    id: h(id),
+                                                    name: h(users[id]),
+                                                    detail: h(detail),
+                                                    comment: h(comment),
+                                                    filename: h(filename),
+                                                    time: h(time),
+                                                    lines: h(file.patch).split("\n")
+                                                });
+                                                panel_count ++;
+                                                if(panel_count == panels_max){
+                                                    return false;//same as "break;"
+                                                }
                                             }
                                         });
                                     }
