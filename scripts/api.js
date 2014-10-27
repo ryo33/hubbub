@@ -51,6 +51,7 @@ function get_timeline(){
                                     var time = json.data.commit.committer.date;
                                     var comment = json.data.comments_url;
                                     var detail = json.data.html_url;
+                                    var message = json.data.commit.message;
 //-----------------------------------------------------------------------------------------------files
                                     if(json.data.files){
                                         $.each(json.data.files, function(i, file){
@@ -60,6 +61,7 @@ function get_timeline(){
                                                 var filename = file.filename;
                                                 $("#loading").remove();
                                                 add_panel({
+                                                    message: message,
                                                     file: h(blob),
                                                     i: h(panel_count),
                                                     icon: h(icon),

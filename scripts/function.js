@@ -14,7 +14,7 @@ function show_welcome(){
     $("div#panels").append("<div class=\"jumbotron\">" +
         "<h1>Login to see commits<br />and comment on commits!</h1>" +
         "<p><a id=\"authbutton2\" class=\"btn btn-primary btn-lg\">Login</a></p>" +
-        "<p><a href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></p></div>"
+        "<p><a class=\"text\" href=\"https://github.com/ryo33/hubbub\" target=\"_blank\">See Hubbub in GitHub</a></p></div>"
         );
     $("#authbutton2").on("click", auth_button);
 }
@@ -36,14 +36,16 @@ function create_panel(args){
     var detail = args.detail;
     var file = args.file;
     var i = args.i;
+    var message = args.message;
     var comment_arg = "{i: " + i + ", url: '" + comment + "', filename: '" + filename + "'}";
     var detail_arg = "{url: '" + detail + "'}";
     return "<div class=\"panel panel-default\">" +
         "<div class=\"panel-heading\">"+
-        "<a class=\"lead\" href=\"https://github.com/" + id + "\"><img src=\"" + icon + "\" height=30px width=30px />" + id + "</a><span class=\"text-muted\"> " + name + "</span>" +
+        "<a class=\"lead text\" href=\"https://github.com/" + id + "\"><img src=\"" + icon + "\" height=30px width=30px />" + id + "</a><span class=\"text-muted\"> " + name + "</span>" +
         "</div>"+
         "<div id=\"" + i + "\" class=\"panel-body\">" +
-        "<a href=\"" + file + "\" target=\"_blank\">" + filename + "</a><span class=\"text-muted\"> " + time + "</span>" +
+        "<a href=\""  + detail + "\" class=\"text\"><h3 style=\"margin: 0px 0px;\">" + message + "</h3></a>"+
+        "<a href=\"" + file + "\" target=\"_blank\" class=\"text\">" + filename + "</a><span class=\"text-muted\"> " + time + "</span>" +
         "<pre class=\"pre-scrollable\" style=\"background-color:#eee\">" +
         lines.map(function(x){
             if(x.charAt(0) == "@"){
